@@ -20,7 +20,6 @@ export default () => {
     .arguments('<url>')
     .option('-o --output [path]', 'output directory', process.cwd())
     .action((url, argv) => {
-      console.log(argv);
       loadPage(url, argv.output)
         .then((fileName) => console.log(`The page was downloaded to ${url} as ${fileName}`))
         .catch((err) => {

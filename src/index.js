@@ -7,7 +7,7 @@ import loadAllResources from './resources-service.js';
 import { createLinkPath, linkTypesMapping } from './utils.js';
 import log from './logger.js';
 
-export default (requestUrl, outputPath) =>
+export default (requestUrl, outputPath = process.cwd()) =>
   axios.get(requestUrl).then((res) => {
     log(`Loading the page ${requestUrl} to ${outputPath}`);
     const { links, updatedHtml } = changeLinksToRelative(res.data, requestUrl);
