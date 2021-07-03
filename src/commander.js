@@ -1,13 +1,21 @@
-import program from 'commmander';
+import commander from 'commander';
+
+import loadPage from '.';
+import { version } from '../package.json';
 
 export default () => {
-  program
-    .version('1.0.0')
-    .description('Load page by url')
-    .option('-o', '--output [path]', process.cwd())
+  commander
+    .version(version)
+    .description('Download the webpage by url')
     .arguments('<url>')
+    .option('-o', '--output [path]', process.cwd())
     .action((url) => {
-      console.log(url);
+      loadPage(url, commander.output)
+        .then((fileName) => console.log(`The page was downloaded to ${url} as ${fileName}`))
+        .catch((err) => {
+          console.error(err.message);
+          process.exit(1);
+        });
     })
     .parse(process.argv);
 };

@@ -1,20 +1,28 @@
+import path from 'path';
 import axios from 'axios';
 import { promises as fs } from 'fs';
-import path from 'path';
+
+import changeLinksToRelative from './parser';
+import loadAllResources from './resources-service';
+import { createLinkPath, linkTypesMapping } from './utils';
+import log from './logger';
 
 export default (requestUrl, outputPath) =>
-  axios
-    .get(requestUrl)
-    .then(({ data }) => {
-      const newUrl = new URL(requestUrl);
-      const extension = 'html';
-      const fileName = `${`${newUrl.host}${newUrl.pathname === '/' ? '' : newUrl.pathname}`.replace(
-        /[^a-zA-Z1-9]/g,
-        '-'
-      )}.${extension}`;
-
-      fs.writeFile(path.join(outputPath, fileName), data, 'utf-8').catch((e) => {
-        throw new Error(`Error write file - ${e}`);
+  axios.get(requestUrl).then((res) => {
+    log(`Loading the page ${requestUrl} to ${outputPath}`);
+    const { links, updatedHtml } = changeLinksToRelative(res.data, requestUrl);
+    const htmlPath = path.join(outputPath, createLinkPath(requestUrl, linkTypesMapping.html));
+    return fs
+      .writeFile(htmlPath, updatedHtml)
+      .then(() => {
+        const resDir = path.join(
+          outputPath,
+          createLinkPath(requestUrl, linkTypesMapping.directory)
+        );
+        return loadAllResources(links, resDir);
+      })
+      .catch((error) => {
+        log(error.message);
+        throw error;
       });
-    })
-    .catch(console.error);
+  });

@@ -1,7 +1,11 @@
 install: install-deps
 
 run:
-	bin/nodejs-package.js 10
+	npx babel-node dist/bin/page-loader.js
+
+build:
+	rm -rf dist
+	npm run build
 
 install-deps:
 	npm ci
@@ -16,6 +20,6 @@ lint:
 	npx eslint .
 
 publish:
-	npm publish
+	npm publish --dry-run
 
 .PHONY: test
