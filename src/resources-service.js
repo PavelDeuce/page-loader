@@ -7,7 +7,7 @@ import map from 'lodash/map.js';
 import log from './logger.js';
 import { createLinkPath } from './utils.js';
 
-const loadResource = (link, resourcesDirectory) =>
+const loadResource = (link, resourcesDirectory) => (
   axios
     .get(link, { responseType: 'arraybuffer' })
     .then(({ data }) => {
@@ -18,9 +18,9 @@ const loadResource = (link, resourcesDirectory) =>
     .catch((error) => {
       log(`Fetch resource ${link} failed with message: ${error.message}`);
       throw error;
-    });
+    }));
 
-const loadAllResources = (links, resourcesDirectory) =>
+const loadAllResources = (links, resourcesDirectory) => (
   fs
     .mkdir(resourcesDirectory)
     .then(() => {
@@ -35,6 +35,6 @@ const loadAllResources = (links, resourcesDirectory) =>
     .catch((error) => {
       log(`Folder creation ${resourcesDirectory} failed with message: ${error.message}`);
       throw error;
-    });
+    }));
 
 export default loadAllResources;

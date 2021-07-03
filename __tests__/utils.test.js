@@ -23,7 +23,7 @@ describe('createLinkPath', () => {
 
   test('should throw error', () => {
     expect(() => createLinkPath('https://hexlet.io/courses', 'url')).toThrowError(
-      'Unknown type - url'
+      'Unknown type - url',
     );
   });
 });

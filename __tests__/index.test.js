@@ -46,7 +46,7 @@ describe('page-loader', () => {
     const resourcesDirectory = createLinkPath(requestUrl, linkTypesMapping.directory);
     const resultHtmlPath = path.join(
       tempDirectory,
-      createLinkPath(requestUrl, linkTypesMapping.html)
+      createLinkPath(requestUrl, linkTypesMapping.html),
     );
     const resultJsPath = path.join(tempDirectory, resourcesDirectory, 'hexlet-io-js-index.js');
     const resultCssPath = path.join(tempDirectory, resourcesDirectory, 'hexlet-io-css-index.css');
@@ -68,7 +68,7 @@ describe('page-loader', () => {
       .get('/profile')
       .reply(404);
     await expect(
-      loadPage(`https://${path.join(hostname, '/profile')}`, tempDirectory)
+      loadPage(`https://${path.join(hostname, '/profile')}`, tempDirectory),
     ).rejects.toThrow('Request failed with status code 404');
   });
 

@@ -13,8 +13,8 @@ const { version } = JSON.parse(packageContent);
 
 const program = new Command();
 
-export default () => {
-  return program
+export default () => (
+  program
     .version(version)
     .description('Download the webpage by url')
     .arguments('<url>')
@@ -28,5 +28,4 @@ export default () => {
           process.exit(1);
         });
     })
-    .parse(process.argv);
-};
+    .parse(process.argv));
