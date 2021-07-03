@@ -29,7 +29,7 @@ export const createLinkPath = (link, type = linkTypesMapping.file) => {
     case linkTypesMapping.file: {
       const extension = path.extname(link) || htmlExtension;
       const linkWithoutExtension = link.replace(extension, '');
-      return `${linkWithoutExtension}${extension}`;
+      return `${transformToKebabNotation(linkWithoutExtension)}${extension}`;
     }
     default:
       throw new Error(`Unknown type - ${type}`);
