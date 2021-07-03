@@ -3,8 +3,8 @@ import os from 'os';
 import path from 'path';
 import { promises as fs } from 'fs';
 
-import loadPage from '../src/index';
-import { getFixturePath, createLinkPath, linkTypesMapping } from '../src/utils';
+import loadPage from '../src/index.js';
+import { getFixturePath, createLinkPath, linkTypesMapping } from '../src/utils.js';
 
 let tempDirectory = '';
 const hostname = 'hexlet.io';

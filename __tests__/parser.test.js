@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
-import changeLinksToRelative from '../src/parser';
-import { getFixturePath } from '../src/utils';
+
+import changeLinksToRelative from '../src/parser.js';
+import { getFixturePath } from '../src/utils.js';
 
 describe('parser', () => {
   test('should parse links', async () => {

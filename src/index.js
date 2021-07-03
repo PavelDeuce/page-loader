@@ -2,10 +2,10 @@ import path from 'path';
 import axios from 'axios';
 import { promises as fs } from 'fs';
 
-import changeLinksToRelative from './parser';
-import loadAllResources from './resources-service';
-import { createLinkPath, linkTypesMapping } from './utils';
-import log from './logger';
+import changeLinksToRelative from './parser.js';
+import loadAllResources from './resources-service.js';
+import { createLinkPath, linkTypesMapping } from './utils.js';
+import log from './logger.js';
 
 export default (requestUrl, outputPath) =>
   axios.get(requestUrl).then((res) => {

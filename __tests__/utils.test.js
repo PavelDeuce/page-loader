@@ -1,4 +1,4 @@
-import { createLinkPath, transformToKebabNotation, linkTypesMapping } from '../src/utils';
+import { createLinkPath, transformToKebabNotation, linkTypesMapping } from '../src/utils.js';
 
 describe('transformToKebabNotation', () => {
   test('should transform', () => {

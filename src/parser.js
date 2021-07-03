@@ -1,7 +1,8 @@
 import path from 'path';
 import cheerio from 'cheerio';
-import entires from 'lodash/entries';
-import { linkTypesMapping, createLinkPath } from './utils';
+import entires from 'lodash/entries.js';
+
+import { linkTypesMapping, createLinkPath } from './utils.js';
 
 const tagsMapping = {
   img: 'src',

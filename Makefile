@@ -1,17 +1,13 @@
 install: install-deps
 
-run:
-	npx babel-node dist/bin/page-loader.js
-
-build:
-	rm -rf dist
-	npm run build
+page-loader:
+	node src/bin/page-loader.js
 
 install-deps:
 	npm ci
 
 test:
-	npm test
+	DEBUG=nock.common,page-loader*,axios npm test
 
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
@@ -21,5 +17,3 @@ lint:
 
 publish:
 	npm publish --dry-run
-
-.PHONY: test

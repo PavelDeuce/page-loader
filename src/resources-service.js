@@ -2,10 +2,10 @@ import path from 'path';
 import axios from 'axios';
 import { createWriteStream, promises as fs } from 'fs';
 import Listr from 'listr';
-import map from 'lodash/map';
+import map from 'lodash/map.js';
 
-import log from './logger';
-import { createLinkPath } from './utils';
+import log from './logger.js';
+import { createLinkPath } from './utils.js';
 
 const loadResource = (link, resourcesDirectory) =>
   axios

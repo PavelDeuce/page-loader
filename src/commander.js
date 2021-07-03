@@ -1,7 +1,15 @@
 import { Command } from 'commander';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-import loadPage from '.';
-import { version } from '../package.json';
+import loadPage from './index.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const packageContent = fs.readFileSync(path.resolve(__dirname, '../package.json'), 'utf-8');
+const { version } = JSON.parse(packageContent);
 
 const program = new Command();
 
