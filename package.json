@@ -9,7 +9,7 @@
   ],
   "main": "src/index.js",
   "bin": {
-    "page-loader": "dist/bin/page-loader.js"
+    "page-loader": "src/dist/bin/page-loader.js"
   },
   "files": [
     "dist"
