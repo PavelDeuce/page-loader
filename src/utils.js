@@ -20,15 +20,15 @@ export const linkTypesMapping = {
 
 export const createLinkPath = (link, type = linkTypesMapping.file) => {
   const kebabLink = transformToKebabNotation(link);
-  const htmlExtenstion = '.html';
+  const htmlExtension = '.html';
   switch (type) {
     case linkTypesMapping.html:
-      return `${kebabLink}${htmlExtenstion}`;
+      return `${kebabLink}${htmlExtension}`;
     case linkTypesMapping.directory:
       return `${kebabLink}_files`;
     case linkTypesMapping.file: {
-      const linkWithoutExtension = kebabLink.slice(0, kebabLink.lastIndexOf('-'));
-      const extension = path.extname(link) || htmlExtenstion;
+      const extension = path.extname(link) || htmlExtension;
+      const linkWithoutExtension = link.replace(extension, '');
       return `${linkWithoutExtension}${extension}`;
     }
     default:
