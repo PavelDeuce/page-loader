@@ -21,6 +21,7 @@ export default (requestUrl, outputPath = process.cwd()) =>
         );
         return loadAllResources(links, resDir);
       })
+      .then(() => outputPath)
       .catch((error) => {
         log(error.message);
         throw error;

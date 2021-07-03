@@ -1,6 +1,6 @@
 import path from 'path';
 import axios from 'axios';
-import { createWriteStream, promises as fs } from 'fs';
+import { promises as fs } from 'fs';
 import Listr from 'listr';
 import map from 'lodash/map.js';
 
@@ -9,11 +9,11 @@ import { createLinkPath } from './utils.js';
 
 const loadResource = (link, resourcesDirectory) =>
   axios
-    .get(link, { responseType: 'stream' })
+    .get(link, { responseType: 'arraybuffer' })
     .then(({ data }) => {
       const fileName = createLinkPath(link);
-      data.pipe(createWriteStream(path.join(resourcesDirectory, fileName)));
-      return log(`The file ${fileName} was successfully loaded to ${resourcesDirectory}`);
+      log(`The file ${fileName} was successfully loaded to ${resourcesDirectory}`);
+      return fs.writeFile(path.join(resourcesDirectory, fileName), data);
     })
     .catch((error) => {
       log(`Fetch resource ${link} failed with message: ${error.message}`);

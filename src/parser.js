@@ -12,7 +12,7 @@ const tagsMapping = {
 
 const changeLinksToRelative = (html, requestPath) => {
   const $ = cheerio.load(html);
-  const { origin } = new URL(requestPath);
+  const { origin, host } = new URL(requestPath);
   const fileDirectoryPath = createLinkPath(requestPath, linkTypesMapping.directory);
   const links = [];
 
@@ -22,8 +22,8 @@ const changeLinksToRelative = (html, requestPath) => {
       if (!attr) return;
 
       const link = new URL(attr, origin);
-      if (!origin.includes(link.host)) return;
-      if (link) links.push(link.toString());
+      if (link.host !== host) return;
+      links.push(link.toString());
 
       const newPath = path.join(fileDirectoryPath, createLinkPath(link.toString()));
       $(el).attr(attribute, newPath);
