@@ -23,7 +23,7 @@ export default () => {
     .action((url, argv) => {
       console.log(`Downloading ${url}...`);
       loadPage(url, argv.output)
-        .then((fileName) => console.log(`The page was downloaded to ${url} as ${fileName}`))
+        .then((fileName) => console.log(`The page was downloaded to ${fileName} as ${url}`))
         .catch((err) => {
           console.error(err.message);
           process.exit(1);
