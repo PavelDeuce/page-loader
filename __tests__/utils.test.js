@@ -21,6 +21,10 @@ describe('createLinkPath', () => {
     expect(createLinkPath(link, type)).toBe(result);
   });
 
+  test('should return file by default', () => {
+    expect(createLinkPath('https://hexlet.io/courses')).toBe('hexlet-io-courses.html');
+  });
+
   test('should throw error', () => {
     expect(() => createLinkPath('https://hexlet.io/courses', 'url')).toThrowError(
       'Unknown type - url',

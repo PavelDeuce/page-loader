@@ -13,12 +13,13 @@ const { version } = JSON.parse(packageContent);
 
 const program = new Command();
 
-export default () => (
-  program
+export default () => {
+  const outputOption = '-o --output [path]';
+  return program
     .version(version)
     .description('Download the webpage by url')
     .arguments('<url>')
-    .option('-o --output [path]', 'output directory', process.cwd())
+    .option(outputOption, 'output directory', process.cwd())
     .action((url, argv) => {
       console.log(`Downloading ${url}...`);
       loadPage(url, argv.output)
@@ -28,4 +29,5 @@ export default () => (
           process.exit(1);
         });
     })
-    .parse(process.argv));
+    .parse(process.argv);
+};

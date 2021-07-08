@@ -7,11 +7,12 @@ import loadAllResources from './resources-service.js';
 import { createLinkPath, linkTypesMapping } from './utils.js';
 import log from './logger.js';
 
-export default (requestUrl, outputPath = process.cwd()) => (
-  axios.get(requestUrl).then((res) => {
+export default (requestUrl, outputPath = process.cwd()) => {
+  const htmlPath = path.join(outputPath, createLinkPath(requestUrl, linkTypesMapping.html));
+
+  return axios.get(requestUrl).then((res) => {
     log(`Loading the page ${requestUrl} to ${outputPath}`);
     const { links, updatedHtml } = changeLinksToRelative(res.data, requestUrl);
-    const htmlPath = path.join(outputPath, createLinkPath(requestUrl, linkTypesMapping.html));
     return fs
       .writeFile(htmlPath, updatedHtml)
       .then(() => {
@@ -26,4 +27,5 @@ export default (requestUrl, outputPath = process.cwd()) => (
         log(error.message);
         throw error;
       });
-  }));
+  });
+};
