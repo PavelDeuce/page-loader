@@ -18,8 +18,8 @@ Download the webpage by url.
 
 Available options:
 
-* `-o [-output]`
-* `-h [-help]`
+* `-o [--output]`
+* `-h [--help]`
 
 ### Launch example:
 
