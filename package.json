@@ -16,18 +16,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PavelDeuce/backend-project-lvl3.git"
+    "url": "git+https://github.com/PavelDeuce/page-loader.git"
   },
   "author": "Pavel Deryugin (PavelDeuce)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PavelDeuce/backend-project-lvl3/issues"
+    "url": "https://github.com/PavelDeuce/page-loader/issues"
   },
   "jest": {
     "testEnvironment": "node"
   },
   "type": "module",
-  "homepage": "https://github.com/PavelDeuce/backend-project-lvl3#readme",
+  "homepage": "https://github.com/PavelDeuce/page-loader#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "axios-debug-log": "^0.8.2",
