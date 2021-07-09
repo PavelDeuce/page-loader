@@ -2,7 +2,6 @@ import path from 'path';
 import axios from 'axios';
 import debug from 'debug';
 import { promises as fs } from 'fs';
-import map from 'lodash/map';
 import Listr from 'listr';
 
 import changeLinksToRelative from './parser.js';
@@ -31,7 +30,7 @@ export default (requestUrl, outputPath = process.cwd()) => {
       .mkdir(resourcesDirectory)
       .then(() => {
         const listrOptions = { exitOnError: false, concurrent: true };
-        const listrData = map(links, (link) => ({
+        const listrData = links.map((link) => ({
           title: `Loading ${link}`,
           task: () => loadResource(link),
         }));
