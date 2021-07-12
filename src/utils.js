@@ -1,15 +1,14 @@
 import path from 'path';
 
-export const getFixturePath = (filepath) => path.join('__fixtures__', filepath);
-
 export const transformToKebabNotation = (link) => {
   if (link.length === 0) return '';
   const { host = '', pathname } = new URL(link);
-  const name = `${host}${pathname}`.replace(/[^a-z1-9]/g, '-');
+  const replaceValue = '-';
+  const name = `${host}${pathname}`.replace(/[^a-z1-9]/g, replaceValue);
   return name
-    .split('-')
+    .split(replaceValue)
     .filter((el) => el)
-    .join('-');
+    .join(replaceValue);
 };
 
 export const linkTypesMapping = {

@@ -4,8 +4,9 @@ import path from 'path';
 import { promises as fs } from 'fs';
 
 import loadPage from '../src/index.js';
-import { getFixturePath, createLinkPath, linkTypesMapping } from '../src/utils.js';
+import { createLinkPath, linkTypesMapping } from '../src/utils.js';
 
+const getFixturePath = (filepath) => path.join('__fixtures__', filepath);
 let tempDirectory = '';
 const hostname = 'hexlet.io';
 const pathname = '/courses';
