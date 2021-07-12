@@ -19,6 +19,7 @@ Download the webpage by url.
 Available options:
 
 * `-o [--output]`
+* `-v [--version]`
 * `-h [--help]`
 
 ### Launch example:
